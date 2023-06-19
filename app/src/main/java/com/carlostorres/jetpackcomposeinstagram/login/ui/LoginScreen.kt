@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Create
 //import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -57,9 +58,20 @@ fun LoginScreen(loginViewModel: LoginViewModel) {
             .fillMaxSize()
             .padding(8.dp)
     ) {
+        val isLoading: Boolean by loginViewModel.isLoading.observeAsState(initial = false)
+        if (isLoading){
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .align(Alignment.Center)){
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+
+            }
+        }else{
         Header(Modifier.align(Alignment.TopEnd))
         Body(Modifier.align(Alignment.Center), loginViewModel)
         Footer(Modifier.align(Alignment.BottomCenter))
+
+        }
     }
 
 }
@@ -130,7 +142,7 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
         Spacer(modifier = Modifier.size(8.dp))
         ForgotPassword(modifier = Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.size(16.dp))
-        LogginButton(isLoginEnable)
+        LogginButton(isLoginEnable, loginViewModel)
         Spacer(modifier = Modifier.size(16.dp))
         LoginDivider()
         Spacer(modifier = Modifier.size(32.dp))
@@ -189,9 +201,9 @@ fun LoginDivider() {
 }
 
 @Composable
-fun LogginButton(loginEnable: Boolean) {
+fun LogginButton(loginEnable: Boolean, loginViewModel: LoginViewModel) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { loginViewModel.onLogginSelected() },
         enabled = loginEnable,
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
