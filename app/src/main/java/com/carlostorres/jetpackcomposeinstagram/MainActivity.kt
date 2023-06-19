@@ -3,6 +3,7 @@ package com.carlostorres.jetpackcomposeinstagram
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,8 +19,13 @@ import com.carlostorres.jetpackcomposeinstagram.login.ui.LoginScreen
 import com.carlostorres.jetpackcomposeinstagram.login.ui.LoginViewModel
 import com.carlostorres.jetpackcomposeinstagram.model.Routes
 import com.carlostorres.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val loginViewModel: LoginViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -35,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.Pantalla1.route){ ScreenOne(navigationController) }
                         composable(Routes.Pantalla2.route){ ScreenTwo(navigationController) }
                         composable(Routes.Pantalla3.route){ ScreenThree(navigationController) }
-                        composable(Routes.LoginScreen.route){ LoginScreen(LoginViewModel()) }
+                        composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel) }
                         composable(Routes.ScaffoldScreen.route){ ScaffoldExample() }
                         composable(
                             route = Routes.Pantalla4.route,
