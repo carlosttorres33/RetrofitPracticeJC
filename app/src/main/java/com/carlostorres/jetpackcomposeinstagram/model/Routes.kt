@@ -12,4 +12,8 @@ sealed class Routes(val route:String){
     }
     object LoginScreen:Routes("login_screen")
     object ScaffoldScreen:Routes("scaffold_screen")
+    object ColorAnimationSimple:Routes("color_animation_simple")
+    object SizeAnimation:Routes("size_animation")
+    object VisivilityAnimation:Routes("visivility_animation")
+    object CrossfadeExamppleAnimation:Routes("crossfade_example_animation")
 }

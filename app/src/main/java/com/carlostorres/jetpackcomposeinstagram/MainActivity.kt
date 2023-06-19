@@ -37,12 +37,16 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navigationController = rememberNavController()
-                    NavHost(navController = navigationController, startDestination = Routes.LoginScreen.route){
+                    NavHost(navController = navigationController, startDestination = Routes.CrossfadeExamppleAnimation.route){
                         composable(Routes.Pantalla1.route){ ScreenOne(navigationController) }
                         composable(Routes.Pantalla2.route){ ScreenTwo(navigationController) }
                         composable(Routes.Pantalla3.route){ ScreenThree(navigationController) }
                         composable(Routes.LoginScreen.route){ LoginScreen(loginViewModel) }
                         composable(Routes.ScaffoldScreen.route){ ScaffoldExample() }
+                        composable(Routes.ColorAnimationSimple.route){ ColorAnimationSimple() }
+                        composable(Routes.SizeAnimation.route){ SizeAnimation(navigationController) }
+                        composable(Routes.VisivilityAnimation.route){ VisivilityAnimation() }
+                        composable(Routes.CrossfadeExamppleAnimation.route){ CrossfadeExamppleAnimation() }
                         composable(
                             route = Routes.Pantalla4.route,
                             arguments = listOf(navArgument("age") {type = NavType.IntType}))

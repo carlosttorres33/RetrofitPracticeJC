@@ -224,8 +224,6 @@ fun TweetScreen() {
             .height(1.dp), color = Color.Gray)
     }
 
-
-
 }
 
 @Preview (showSystemUi = true, showBackground = true)
